@@ -1,14 +1,12 @@
-import { test, expect } from '@playwright/test'
-import { MainPage } from '../pages/MainPage'
-import { LoginPage } from '../pages/LoginPage';
+import { test, expect } from '../fixtures/baseTest';
 
-test ('check sign in', async ({page}) => {
+
+test ('check sign in', async ({ mainPage, loginPage}) => {
     
-    const mainPage = new MainPage(page);
-    const loginPage = new LoginPage(page);
-    await page.goto('https://practicesoftwaretesting.com');
+    await mainPage.open();
     await mainPage.signInButton.click();
-    await loginPage.login('customer@practicesoftwaretesting.com', 'welcome01');    
-    await expect(loginPage.myAccountHeader).toBeVisible();
+    await loginPage.login('admin@practicesoftwaretesting.com', 'welcome01');    
+    await expect(loginPage.userNameMenuButton).toBeVisible();
+    await expect(loginPage.salesChartHeader).toBeVisible();
 
 })

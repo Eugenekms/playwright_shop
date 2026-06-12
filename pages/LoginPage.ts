@@ -7,6 +7,8 @@ export class LoginPage {
     readonly password: Locator;
     readonly button: Locator;
     readonly myAccountHeader: Locator;
+    readonly userNameMenuButton: Locator;
+    readonly salesChartHeader: Locator;    
     
     constructor(page: Page) {
         this.page = page;
@@ -14,6 +16,8 @@ export class LoginPage {
         this.password = page.getByPlaceholder('password');
         this.button = page.getByRole('button', { name: 'Login'});
         this.myAccountHeader = page.getByRole('heading', { name: 'My account'});
+        this.userNameMenuButton = page.getByTestId('nav-menu');
+        this.salesChartHeader = page.getByRole('heading', { name: 'Sales over the years'});
         }
     
     async login(email: string, password: string) {

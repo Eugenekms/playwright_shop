@@ -22,6 +22,10 @@ export class MainPage {
         await this.searchInput.fill(productName);
         await this.page.keyboard.press('Enter'); 
     }
+
+    async open() {
+        await this.page.goto('/')
+    }
     
     
 }
