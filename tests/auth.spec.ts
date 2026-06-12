@@ -5,7 +5,7 @@ test ('check sign in', async ({ mainPage, loginPage}) => {
     
     await mainPage.open();
     await mainPage.signInButton.click();
-    await loginPage.login('admin@practicesoftwaretesting.com', 'welcome01');    
+    await loginPage.login(process.env.ADMIN_EMAIL!, process.env.ADMIN_PASSWORD!)   
     await expect(loginPage.userNameMenuButton).toBeVisible();
     await expect(loginPage.salesChartHeader).toBeVisible();
 
