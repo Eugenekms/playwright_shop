@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 export class MainPage {
     
@@ -8,6 +8,8 @@ export class MainPage {
     readonly signInButton: Locator;
     readonly handToolHammer: Locator;
     readonly cardProductName: Locator;
+    readonly cardProductInstock: Locator;
+    readonly cartLink: Locator;
 
     constructor(page: Page) {
         this.page = page;        
@@ -16,6 +18,8 @@ export class MainPage {
         this.signInButton = page.getByRole('link', { name: 'Sign in'})
         this.handToolHammer = page.getByRole('checkbox', { name: 'Hammer'});
         this.cardProductName = page.getByTestId('product-name');
+        this.cardProductInstock = page.locator('.card');
+        this.cartLink = page.getByTestId('nav-cart');
     }
     
     async searchForProduct(productName: string) {
@@ -25,6 +29,12 @@ export class MainPage {
 
     async open() {
         await this.page.goto('/')
+    }
+
+    async choseInStock() {
+        await this.page.waitForLoadState('networkidle');
+        const availbleCard = this.cardProductInstock.filter({ hasNotText: 'Out of stock'}).first();
+        await availbleCard.getByTestId('product-name').click();
     }
     
     
