@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/baseTest';
 
 
-test ('check buy product', async ({ mainPage, loginPage, checkoutPage, productPage}) => {
+test ('check buy product @flaky', async ({ mainPage, loginPage, checkoutPage, productPage}) => {
     const shippingAddress = {
         country: 'United States of America (the)',
         city: 'New York',

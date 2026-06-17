@@ -1,7 +1,7 @@
 import { test, expect } from '../fixtures/baseTest';
 
 
-test ('check sign in', async ({ mainPage, loginPage}) => {
+test ('check sign in @flaky', async ({ mainPage, loginPage}) => {
     
     await mainPage.open();
     await mainPage.signInButton.click();
