@@ -1,5 +1,6 @@
 import { test, expect } from '../fixtures/baseTest';
 
+test.use({ storageState: { cookies: [], origins: [] } });
 
 test ('check sign in @flaky', async ({ mainPage, loginPage}) => {
     
