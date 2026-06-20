@@ -1,16 +1,35 @@
 {
-  "name": "playwright_shop",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "@playwright/test": "^1.60.0",
-    "@types/node": "^25.9.2",
-    "dotenv": "^17.4.2"
-  }
+    "name": "playwright_shop",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "prepare": "husky"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "devDependencies": {
+        "@playwright/test": "^1.60.0",
+        "@types/node": "^25.9.2",
+        "@typescript-eslint/eslint-plugin": "^8.61.1",
+        "@typescript-eslint/parser": "^8.61.1",
+        "dotenv": "^17.4.2",
+        "eslint": "^10.5.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-playwright": "^2.10.4",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.0.7",
+        "prettier": "^3.8.4"
+    },
+    "lint-staged": {
+        "*.{js,ts}": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.json": [
+            "prettier --write"
+        ]
+    }
 }
