@@ -1,5 +1,8 @@
 import { Locator, Page } from '@playwright/test';
 
+/**
+ * Page Object representing the Main Page of the e-commerce application.
+ */
 export class MainPage {
     readonly page: Page;
     readonly searchInput: Locator;
@@ -21,15 +24,26 @@ export class MainPage {
         this.cartLink = page.getByTestId('nav-cart');
     }
 
+    /**
+     * Searches for a product by its name using the top search bar.
+     * @param {string} productName - The exact name of the product to search for.
+     */
     async searchForProduct(productName: string) {
         await this.searchInput.fill(productName);
         await this.page.keyboard.press('Enter');
     }
 
+    /**
+     * Navigates directly to the main page of the application.
+     */
     async open() {
         await this.page.goto('/');
     }
 
+    /**
+     * Waits for the product cards to be visible, filters out items that are
+     * 'Out of stock', and clicks on the title of the first available product.
+     */
     async choseInStock() {
         await this.cardProductInstock.first().waitFor({ state: 'visible' });
         const availbleCard = this.cardProductInstock.filter({ hasNotText: 'Out of stock' }).first();

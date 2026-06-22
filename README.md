@@ -2,10 +2,20 @@
 
 This repository contains an automated UI testing framework for the [Practice Software Testing](https://practicesoftwaretesting.com/) demo platform. 
 
-## 🛠 Tech Stack
-* **Test Runner / Automation Tool**: [Playwright](https://playwright.dev/)
+## 🛠 Tech Stack & Architecture
+* **Automation Tool**: [Playwright](https://playwright.dev/)
 * **Language**: TypeScript
-* **Design Patterns**: Page Object Model (POM) + Custom Fixtures
+* **Design Patterns**: Page Object Model (POM), Custom Fixtures
+* **Key Features**: 
+  * Isolated API and UI testing projects
+  * Global setup for UI authentication (saving state to avoid repetitive logins)
+  * Dynamic API chaining and negative scenarios handling (401, 404, 423)
+
+## 📁 Project Structure
+* `/tests` - Contains UI and API spec files (isolated by Playwright projects)
+* `/pages` - Page Object classes (strict separation of actions and assertions)
+* `/fixtures` - Custom Playwright fixtures for test setup and state management
+* `playwright.config.ts` - Multi-browser and API project configurations
 
 ## 🚀 Getting Started
 
