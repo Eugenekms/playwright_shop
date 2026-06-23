@@ -1,13 +1,14 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test';
 
+/**
+ * Page Object representing a single Product Page.
+ */
 export class ProductPage {
-
     readonly page: Page;
-    readonly addToCardButton: Locator;
+    readonly addToCartButton: Locator;
 
     constructor(page: Page) {
         this.page = page;
-        this.addToCardButton = page.getByTestId('add-to-cart');
+        this.addToCartButton = page.getByTestId('add-to-cart');
     }
-
 }

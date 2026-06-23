@@ -1,7 +1,9 @@
-import { Locator, Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test';
 
+/**
+ * Page Object representing the Checkout and Payment process.
+ */
 export class CheckoutPage {
-
     readonly page: Page;
     readonly proceedToCheckoutButton1: Locator;
     readonly proceedToCheckoutButton2: Locator;
@@ -28,17 +30,29 @@ export class CheckoutPage {
         this.monthlyInstallments = page.getByTestId('monthly_installments');
         this.finishButton = page.getByTestId('finish');
         this.paymentSuccessMessage = page.getByTestId('payment-success-message');
-    };
+    }
 
+    /**
+     * Selects a country from the billing/shipping country dropdown.
+     * @param {string} countryName - The exact name of the country to select.
+     */
     async selectAnyCountry(countryName: string) {
         await this.selectCountry.selectOption(countryName);
-    };
+    }
 
+    /**
+     * Selects the desired payment method.
+     * @param {string} paymentMethod - The payment method to choose (e.g., 'Credit Card', 'Bank Transfer').
+     */
     async selectPaymentMethod(paymentMethod: string) {
         await this.paymentMethod.selectOption(paymentMethod);
-    };
+    }
 
+    /**
+     * Selects the number of monthly installments if an applicable payment method is chosen.
+     * @param {string} monthlyInstallments - The installment option to select (e.g., '3', '6', '12').
+     */
     async selectMonthlyInstallments(monthlyInstallments: string) {
         await this.monthlyInstallments.selectOption(monthlyInstallments);
-    };
+    }
 }

@@ -7,23 +7,23 @@ test('check buy product', async ({ mainPage, checkoutPage, productPage }) => {
         state: 'NY',
         postalCode: '10001',
         street: '5th Avenue',
-        houseNumber: '123'
-    };    
-    
+        houseNumber: '123',
+    };
+
     await mainPage.open();
     await mainPage.choseInStock();
-    await productPage.addToCardButton.click();
+    await productPage.addToCartButton.click();
     await mainPage.cartLink.click();
-    
+
     await checkoutPage.proceedToCheckoutButton1.click();
-    
+
     await checkoutPage.proceedToCheckoutButton2.click();
-    
+
     await checkoutPage.selectAnyCountry(shippingAddress.country);
     await checkoutPage.postalCode.fill(shippingAddress.postalCode);
     await checkoutPage.houseNumber.fill(shippingAddress.houseNumber);
     await checkoutPage.proceedToCheckoutButton3.click();
-    
+
     await checkoutPage.selectPaymentMethod('Buy Now Pay Later');
     await checkoutPage.selectMonthlyInstallments('12 Monthly Installments');
     await checkoutPage.finishButton.click();
