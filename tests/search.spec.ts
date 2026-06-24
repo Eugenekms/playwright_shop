@@ -1,10 +1,14 @@
 import { test, expect } from '../fixtures/baseTest';
 
-test('check search tools for main page', async ({ mainPage }) => {
-    await mainPage.open();
-    await mainPage.searchForProduct('drill');
-    await expect(mainPage.searchCountResult).toHaveText(/.*drill*/);
-});
+const prods = ['Hammer', 'Pliers', 'drill', 'GoldenAxe'];
+
+for (const prod of prods) {
+    test(`check search tools for main page - ${prod}`, async ({ mainPage }) => {
+        await mainPage.open();
+        await mainPage.searchForProduct(prod);
+        await expect(mainPage.searchCountResult).toContainText(prod, { ignoreCase: true });
+    });
+}
 
 test('single checkbox filter', async ({ mainPage }) => {
     await mainPage.open();
