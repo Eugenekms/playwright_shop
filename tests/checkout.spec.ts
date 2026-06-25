@@ -36,14 +36,14 @@ test('check contact form', async ({ mainPage, contactPage }) => {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     const emailAddress = faker.internet.email();
-    const message = faker.lorem.paragraph(5);
+    const message = faker.lorem.words(15);
     await mainPage.open();
     await mainPage.contactLink.click();
     await contactPage.contactFirstName.fill(firstName);
     await contactPage.contactLastName.fill(lastName);
     await contactPage.contactEmail.fill(emailAddress);
     await contactPage.contactSelectSubject('Webmaster');
-    await contactPage.contactMessege.fill(message);
+    await contactPage.contactMessage.fill(message);
     await contactPage.contactSubmit.click();
 
     await expect(contactPage.contactSuccessAlert).toHaveText(

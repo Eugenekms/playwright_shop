@@ -11,7 +11,7 @@ export class ContactPage {
     readonly contactLastName: Locator;
     readonly contactEmail: Locator;
     readonly contactSubject: Locator;
-    readonly contactMassege: Locator;
+    readonly contactMessage: Locator;
     readonly contactSuccessAlert: Locator;
 
     constructor(page: Page) {
@@ -22,14 +22,14 @@ export class ContactPage {
         this.contactLastName = page.getByPlaceholder('Your last name *');
         this.contactEmail = page.getByPlaceholder('Your email *');
         this.contactSubject = page.getByTestId('subject');
-        this.contactMassege = page.getByTestId('message');
+        this.contactMessage = page.getByTestId('message');
         this.contactSuccessAlert = page.getByRole('alert');
     }
     /**
      * Selects the Subject.
-     * @param {string} Subject - The Subject to choose (e.g., 'Webmaster', 'Return', 'Payments', 'Status of my order').
+     * @param {string} subject - The Subject to choose (e.g., 'Webmaster', 'Return', 'Payments', 'Status of my order').
      */
-    async contactSelectSubject(Subject: string) {
-        await this.contactSubject.selectOption(Subject);
+    async contactSelectSubject(subject: string) {
+        await this.contactSubject.selectOption(subject);
     }
 }
