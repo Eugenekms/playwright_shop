@@ -12,6 +12,7 @@ export class MainPage {
     readonly cardProductName: Locator;
     readonly cardProductInstock: Locator;
     readonly cartLink: Locator;
+    readonly contactLink: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -22,6 +23,7 @@ export class MainPage {
         this.cardProductName = page.getByTestId('product-name');
         this.cardProductInstock = page.locator('.card');
         this.cartLink = page.getByTestId('nav-cart');
+        this.contactLink = page.getByTestId('nav-contact');
     }
 
     /**
