@@ -5,11 +5,13 @@ This repository contains an automated UI testing framework for the [Practice Sof
 ## 🛠 Tech Stack & Architecture
 * **Automation Tool**: [Playwright](https://playwright.dev/)
 * **Language**: TypeScript
+* **Test Data Generation**: [Faker.js](https://fakerjs.dev/)
 * **Design Patterns**: Page Object Model (POM), Custom Fixtures
 * **Key Features**: 
   * Isolated API and UI testing projects
   * Global setup for UI authentication (saving state to avoid repetitive logins)
   * Dynamic API chaining and negative scenarios handling (401, 404, 423)
+  * Dynamic test data generation for reliable and independent test runs
 
 ## 📁 Project Structure
 * `/tests` - Contains UI and API spec files (isolated by Playwright projects)

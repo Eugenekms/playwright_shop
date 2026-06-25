@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
 
 test('request main page', async ({ request }) => {
     const response = await request.get('https://api.practicesoftwaretesting.com/products');
@@ -23,10 +24,12 @@ test('login via api', async ({ request }) => {
 });
 
 test('login via api negative', async ({ request }) => {
+    const fakeEmail = faker.internet.exampleEmail();
+    const fakePassword = faker.internet.password();
     const response = await request.post('https://api.practicesoftwaretesting.com/users/login', {
         data: {
-            email: 'not_exist_user@test.com',
-            password: 'Wrong_password123',
+            email: fakeEmail,
+            password: fakePassword,
         },
     });
     expect(response.status()).toBe(401);
