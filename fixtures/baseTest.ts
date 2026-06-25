@@ -3,16 +3,17 @@ import { MainPage } from '../pages/MainPage';
 import { LoginPage } from '../pages/LoginPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
 import { ProductPage } from '../pages/ProductPage';
+import { ContactPage } from '../pages/ContactPage';
 
 type MyFixtures = {
     mainPage: MainPage;
     loginPage: LoginPage;
     checkoutPage: CheckoutPage;
     productPage: ProductPage;
+    contactPage: ContactPage;
 };
 
 export const test = base.extend<MyFixtures>({
-
     mainPage: async ({ page }, use) => {
         const mainPage = new MainPage(page);
         await use(mainPage);
@@ -33,6 +34,10 @@ export const test = base.extend<MyFixtures>({
         await use(productPage);
     },
 
+    contactPage: async ({ page }, use) => {
+        const contactPage = new ContactPage(page);
+        await use(contactPage);
+    },
 });
 
-export { expect } from '@playwright/test'
+export { expect } from '@playwright/test';

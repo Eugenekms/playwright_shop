@@ -24,7 +24,7 @@ test('login via api', async ({ request }) => {
 });
 
 test('login via api negative', async ({ request }) => {
-    const fakeEmail = faker.internet.exampleEmail();
+    const fakeEmail = faker.internet.email();
     const fakePassword = faker.internet.password();
     const response = await request.post('https://api.practicesoftwaretesting.com/users/login', {
         data: {

@@ -1,3 +1,4 @@
+import { faker } from '@faker-js/faker';
 import { test, expect } from '../fixtures/baseTest';
 
 test('check buy product', async ({ mainPage, checkoutPage, productPage }) => {
@@ -29,4 +30,23 @@ test('check buy product', async ({ mainPage, checkoutPage, productPage }) => {
     await checkoutPage.finishButton.click();
 
     await expect(checkoutPage.paymentSuccessMessage).toContainText('Payment was successful');
+});
+
+test('check contact form', async ({ mainPage, contactPage }) => {
+    const firstName = faker.person.firstName();
+    const lastName = faker.person.lastName();
+    const emailAddress = faker.internet.email();
+    const message = faker.lorem.paragraph(5);
+    await mainPage.open();
+    await mainPage.contactLink.click();
+    await contactPage.contactFirstName.fill(firstName);
+    await contactPage.contactLastName.fill(lastName);
+    await contactPage.contactEmail.fill(emailAddress);
+    await contactPage.contactSelectSubject('Webmaster');
+    await contactPage.contactMessege.fill(message);
+    await contactPage.contactSubmit.click();
+
+    await expect(contactPage.contactSuccessAlert).toHaveText(
+        'Thanks for your message! We will contact you shortly.',
+    );
 });
