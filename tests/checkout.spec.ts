@@ -19,3 +19,19 @@ test('check contact form', async ({ mainPage, contactPage }) => {
         'Thanks for your message! We will contact you shortly.',
     );
 });
+
+test('check proceed button is disabled when address is empty', async ({
+    mainPage,
+    productPage,
+    checkoutPage,
+}) => {
+    await mainPage.open();
+    await mainPage.choseInStock();
+    await productPage.addToCartButton.click();
+    await mainPage.cartLink.click();
+
+    await checkoutPage.proceedToCheckoutButton1.click();
+    await checkoutPage.proceedToCheckoutButton2.click();
+
+    await expect(checkoutPage.proceedToCheckoutButton3).toBeDisabled();
+});
