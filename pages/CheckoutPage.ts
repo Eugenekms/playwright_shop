@@ -16,6 +16,7 @@ export class CheckoutPage {
     readonly monthlyInstallments: Locator;
     readonly finishButton: Locator;
     readonly paymentSuccessMessage: Locator;
+    readonly confirmOrder: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -30,6 +31,7 @@ export class CheckoutPage {
         this.monthlyInstallments = page.getByTestId('monthly_installments');
         this.finishButton = page.getByTestId('finish');
         this.paymentSuccessMessage = page.getByTestId('payment-success-message');
+        this.confirmOrder = page.locator('#order-confirmation');
     }
 
     /**
