@@ -32,3 +32,41 @@ test('e2e purchase flow', async ({ mainPage, productPage, checkoutPage }) => {
         'Thanks for your order! Your invoice number is',
     );
 });
+
+test('should handle payment gateway 500 error gracefully', async ({
+    mainPage,
+    productPage,
+    checkoutPage,
+    page,
+}) => {
+    await mainPage.open();
+    await mainPage.choseInStock();
+    await productPage.addToCartButton.click();
+    await mainPage.cartLink.click();
+
+    await checkoutPage.proceedToCheckoutButton1.click();
+    await checkoutPage.proceedToCheckoutButton2.click();
+
+    await checkoutPage.selectAnyCountry('United States of America (the)');
+    await checkoutPage.postalCode.fill('12345');
+    await checkoutPage.houseNumber.fill('42');
+    await checkoutPage.proceedToCheckoutButton3.click();
+
+    await checkoutPage.selectPaymentMethod('Buy Now Pay Later');
+    await checkoutPage.selectMonthlyInstallments('12 Monthly Installments');
+
+    await page.route('**/payment/check', async (route) => {
+        await route.fulfill({
+            status: 500,
+            contentType: 'application/json',
+            body: JSON.stringify({
+                error: 'Internal Server Error',
+                message: 'Payment Gateway is currently down',
+            }),
+        });
+    });
+
+    await checkoutPage.finishButton.click();
+
+    await expect(checkoutPage.paymentErrorMessage).toContainText('Internal Server Error');
+});

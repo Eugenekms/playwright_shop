@@ -17,6 +17,7 @@ export class CheckoutPage {
     readonly finishButton: Locator;
     readonly paymentSuccessMessage: Locator;
     readonly confirmOrder: Locator;
+    readonly paymentErrorMessage: Locator;
 
     constructor(page: Page) {
         this.page = page;
@@ -32,6 +33,7 @@ export class CheckoutPage {
         this.finishButton = page.getByTestId('finish');
         this.paymentSuccessMessage = page.getByTestId('payment-success-message');
         this.confirmOrder = page.locator('#order-confirmation');
+        this.paymentErrorMessage = page.getByTestId('payment-error-message');
     }
 
     /**
