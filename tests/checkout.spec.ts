@@ -35,3 +35,22 @@ test('check proceed button is disabled when address is empty', async ({
 
     await expect(checkoutPage.proceedToCheckoutButton3).toBeDisabled();
 });
+
+// Оборачиваем в describe, чтобы чистый стейт применился только к этому сценарию
+test.describe('Unauthorized User Security - Checkout', () => {
+    // Стираем память браузеру: удаляем куки и origins
+    test.use({ storageState: { cookies: [], origins: [] } });
+
+    test('should redirect anonymous user to login page when trying to access account profile', async ({
+        page,
+    }) => {
+        // 1. Стучимся на правильный URL (БЕЗ решетки!)
+        await page.goto('/account');
+
+        // 2. Ожидаем редирект на логин
+        await expect(page).toHaveURL(/.*\/auth\/login/);
+
+        // 3. Убеждаемся, что форма входа появилась
+        await expect(page.getByRole('heading', { name: 'Login' })).toBeVisible();
+    });
+});
